@@ -141,10 +141,10 @@ build_ievm() {
         rm -f "${vhd_path}/*.vmc"
 
         log "Extracting VHD from ${vhd_path}/${archive}"
-        if ! unrar e "${archive}"
+        if ! 7z x "${archive}"
         then
             fail "Failed to extract ${archive} to ${vhd_path}/${vhd}," \
-                "unrar command returned error code $?"
+                "7z command returned error code $?"
         fi
     fi
 
@@ -226,7 +226,6 @@ build_and_attach_drivers() {
 check_system
 create_home
 check_virtualbox
-check_unrar
 
 all_versions="6 7 8 9"
 for ver in ${IEVMS_VERSIONS:-$all_versions}
